@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.arekalov.mylibrary"
+    namespace = "com.arekalov.data"
     compileSdk = 34
 
     defaultConfig {

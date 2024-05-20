@@ -1,4 +1,4 @@
-package com.arekalov.mylibrary
+package com.arekalov.data
 
 import org.junit.Test
 
