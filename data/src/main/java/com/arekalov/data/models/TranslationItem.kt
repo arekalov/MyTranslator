@@ -1,4 +1,4 @@
-package com.arekalov.data.api
+package com.arekalov.data.models
 
 data class TranslationItem(
     val id: Int,
