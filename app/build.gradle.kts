@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -42,8 +46,6 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(project(":translationfeature"))
-    implementation(project(":favoritefeature"))
     kapt(libs.dagger.compiler)
 
     implementation(libs.androidx.core.ktx)

@@ -22,5 +22,3 @@ dependencyResolutionManagement {
 rootProject.name = "MyTranslator"
 include(":app")
 include(":data")
-include(":translationfeature")
-include(":favoritefeature")
