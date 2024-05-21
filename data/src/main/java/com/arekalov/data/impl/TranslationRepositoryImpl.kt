@@ -1,13 +1,14 @@
-import com.arekalov.data.TranslationApi
-import com.arekalov.data.TranslationDAO
+package com.arekalov.data.impl
+
+import com.arekalov.data.api.TranslationRepository
 import com.arekalov.data.models.TranslationEntity
 import javax.inject.Inject
 
-class TranslationRepository @Inject constructor(
+internal class TranslationRepositoryImpl @Inject constructor(
     private val translationApi: TranslationApi,
     private val translationDAO: TranslationDAO
-) {
-    suspend fun getTranslation(search: String): TranslationEntity? {
+) : TranslationRepository{
+    override suspend fun getTranslation(search: String): TranslationEntity? {
         try {
             val response = translationApi.getTranslation(search)
             if (response.isSuccessful) {
@@ -27,19 +28,19 @@ class TranslationRepository @Inject constructor(
         }
     }
 
-    suspend fun getHistory(): List<TranslationEntity> {
+    override suspend fun getHistory(): List<TranslationEntity> {
         return translationDAO.getHistory()
     }
 
-    suspend fun getFavorite(): List<TranslationEntity> {
+    override suspend fun getFavorite(): List<TranslationEntity> {
         return translationDAO.getFavorite()
     }
 
-    suspend fun insertTranslation(translation: TranslationEntity) {
+    override suspend fun insertTranslation(translation: TranslationEntity) {
         translationDAO.insertTranslation(translation)
     }
 
-    suspend fun deleteTranslation(translation: TranslationEntity) {
+    override suspend fun deleteTranslation(translation: TranslationEntity) {
         translationDAO.deleteTranslation(translation)
     }
 }

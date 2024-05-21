@@ -1,20 +1,26 @@
 package com.arekalov.data.di.modules
 
-import TranslationRepository
-import com.arekalov.data.TranslationApi
-import com.arekalov.data.TranslationDAO
+import com.arekalov.data.api.TranslationRepository
+import com.arekalov.data.impl.TranslationRepositoryImpl
+import com.arekalov.data.impl.TranslationApi
+import com.arekalov.data.impl.TranslationDAO
 import com.arekalov.data.di.DataModuleScope
 import dagger.Module
 import dagger.Provides
 
 @Module
-object RepositoryModule {
+internal object RepositoryModule {
     @DataModuleScope
     @Provides
     fun providesRepository(
         translationApi: TranslationApi,
         translationDAO: TranslationDAO
-    ): TranslationRepository {
-        return TranslationRepository(translationApi, translationDAO)
+    ): TranslationRepositoryImpl {
+        return TranslationRepositoryImpl(translationApi, translationDAO)
+    }
+    @DataModuleScope
+    @Provides
+    fun provideTranslationRepositoryInterface(implementation: TranslationRepositoryImpl): TranslationRepository {
+        return implementation
     }
 }

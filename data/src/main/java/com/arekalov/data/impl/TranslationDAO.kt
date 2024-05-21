@@ -1,4 +1,4 @@
-package com.arekalov.data
+package com.arekalov.data.impl
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.arekalov.data.models.TranslationEntity
 
 @Dao
-interface TranslationDAO {
+internal interface TranslationDAO {
     @Query("SELECT * FROM translations")
     suspend fun getHistory(): List<TranslationEntity>
 

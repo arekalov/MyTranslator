@@ -35,20 +35,21 @@ android {
 
 dependencies {
 //    Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
 
 //    Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
 //    Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.room.ktx)
 
 //    Dagger2
-    implementation("com.google.dagger:dagger:2.51.1")
-    kapt("com.google.dagger:dagger-compiler:2.51.1")
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
 
     implementation(libs.androidx.core.ktx)

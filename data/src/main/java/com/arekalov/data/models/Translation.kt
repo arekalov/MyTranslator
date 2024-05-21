@@ -1,6 +1,6 @@
 package com.arekalov.data.models
 
-data class Translation(
+internal data class Translation(
     val note: String,
     val text: String
 )

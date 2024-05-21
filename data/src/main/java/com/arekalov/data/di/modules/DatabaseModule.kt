@@ -2,14 +2,14 @@ package com.arekalov.data.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.arekalov.data.TranslationDAO
-import com.arekalov.data.TranslationDataBase
+import com.arekalov.data.impl.TranslationDAO
+import com.arekalov.data.impl.TranslationDataBase
 import com.arekalov.data.di.DataModuleScope
 import dagger.Module
 import dagger.Provides
 
 @Module
-object DatabaseModule {
+internal object DatabaseModule {
     @DataModuleScope
     @Provides
     fun provideDatabase(context: Context): TranslationDataBase {
