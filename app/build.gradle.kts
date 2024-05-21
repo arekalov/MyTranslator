@@ -6,6 +6,10 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding = true
+    }
+
     namespace = "com.arekalov.mytranslator"
     compileSdk = 34
 
@@ -19,9 +23,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
 
     buildTypes {
         release {
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(project(":data"))
     kapt(libs.dagger.compiler)
 
     implementation(libs.androidx.core.ktx)
