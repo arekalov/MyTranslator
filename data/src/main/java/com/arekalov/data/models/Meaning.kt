@@ -1,5 +1,6 @@
 package com.arekalov.data.models
 
+
 data class Meaning(
     val id: Int,
     val imageUrl: String,
