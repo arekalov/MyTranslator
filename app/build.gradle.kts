@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -41,6 +42,8 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(project(":translationfeature"))
+    implementation(project(":favoritefeature"))
     kapt(libs.dagger.compiler)
 
     implementation(libs.androidx.core.ktx)
