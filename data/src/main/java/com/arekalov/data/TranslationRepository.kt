@@ -1,21 +1,25 @@
-package com.arekalov.data
-
+import com.arekalov.data.TranslationDAO
+import com.arekalov.data.TranslationRemoteDataSource
 import com.arekalov.data.models.TranslationEntity
+import javax.inject.Inject
 
-class TranslationRepository(
-    private val translationRemoteDataSource: TranslationRemoteDataSource
+class TranslationRepository @Inject constructor(
+    private val translationRemoteDataSource: TranslationRemoteDataSource,
+    private val translationDAO: TranslationDAO
 ) {
     suspend fun getTranslation(search: String): TranslationEntity? {
         try {
             val response = translationRemoteDataSource.getTranslation(search)
             if (response.isSuccessful) {
                 val meaning = response.body()!![0].meanings[0]
-                return TranslationEntity(
+                val entity = TranslationEntity(
                     imageUrl = meaning.imageUrl,
                     soundUrl = meaning.soundUrl,
                     translation = meaning.translation.text,
                     transcription = meaning.transcription
                 )
+                insertTranslation(entity)
+                return entity
             }
             return null
         } catch (ex: Exception) {
@@ -23,5 +27,19 @@ class TranslationRepository(
         }
     }
 
+    suspend fun getHistory(): List<TranslationEntity> {
+        return translationDAO.getHistory()
+    }
 
+    suspend fun getFavorite(): List<TranslationEntity> {
+        return translationDAO.getFavorite()
+    }
+
+    suspend fun insertTranslation(translation: TranslationEntity) {
+        translationDAO.insertTranslation(translation)
+    }
+
+    suspend fun deleteTranslation(translation: TranslationEntity) {
+        translationDAO.deleteTranslation(translation)
+    }
 }
