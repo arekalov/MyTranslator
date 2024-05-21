@@ -9,18 +9,4 @@ import com.arekalov.data.models.TranslationEntity
 @Database(entities = [TranslationEntity::class], version = 1)
 abstract class TranslationDataBase : RoomDatabase() {
     abstract fun getProductDao(): TranslationDAO
-//
-//    companion object {
-//        private var dbInstance: TranslationDataBase? = null
-//        fun getDbInstance(context: Context): TranslationDataBase {
-//            if (dbInstance == null) {
-//                dbInstance = Room.databaseBuilder<TranslationDataBase>(
-//                    context.applicationContext, TranslationDataBase::class.java, "translation_db"
-//                )
-//                    .allowMainThreadQueries()
-//                    .build()
-//            }
-//            return dbInstance!!
-//        }
-//    }
 }

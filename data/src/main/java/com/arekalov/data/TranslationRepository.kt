@@ -1,6 +1,5 @@
 import com.arekalov.data.TranslationApi
 import com.arekalov.data.TranslationDAO
-import com.arekalov.data.TranslationRemoteDataSource
 import com.arekalov.data.models.TranslationEntity
 import javax.inject.Inject
 
