@@ -1,15 +1,16 @@
+import com.arekalov.data.TranslationApi
 import com.arekalov.data.TranslationDAO
 import com.arekalov.data.TranslationRemoteDataSource
 import com.arekalov.data.models.TranslationEntity
 import javax.inject.Inject
 
 class TranslationRepository @Inject constructor(
-    private val translationRemoteDataSource: TranslationRemoteDataSource,
+    private val translationApi: TranslationApi,
     private val translationDAO: TranslationDAO
 ) {
     suspend fun getTranslation(search: String): TranslationEntity? {
         try {
-            val response = translationRemoteDataSource.getTranslation(search)
+            val response = translationApi.getTranslation(search)
             if (response.isSuccessful) {
                 val meaning = response.body()!![0].meanings[0]
                 val entity = TranslationEntity(
