@@ -36,6 +36,7 @@ class FavoriteFragment : Fragment() {
         setUpAdapter()
         observeHistoryLiveData()
         likeOnClickListener()
+        itemOnClickListener()
     }
 
     private fun setUpAdapter() {
@@ -60,5 +61,12 @@ class FavoriteFragment : Fragment() {
             .observe(viewLifecycleOwner) { data ->
                 historyAdapter.differ.submitList(data.filter { it.isFavorite })
             }
+    }
+
+    private fun itemOnClickListener() {
+        historyAdapter.onCLick = { translationEntity ->
+            val action = FavoriteFragmentDirections.actionFavoriteFragmentToMainTranslationFragment(translationEntity)
+            findNavController().navigate(action)
+        }
     }
 }

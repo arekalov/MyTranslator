@@ -3,15 +3,19 @@ package com.arekalov.mytranslator.fragments
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arekalov.data.models.TranslationEntity
 import com.arekalov.mytranslator.MainActivity
 import com.arekalov.mytranslator.R
 import com.arekalov.mytranslator.adapters.TranslationHistoryAdapter
@@ -37,6 +41,7 @@ class MainTranslationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         translationViewModel.updateHistory()
+        getArgs()
         setUpAdapter()
         observeHistoryLiveData()
         observeSearchButton()
@@ -46,6 +51,16 @@ class MainTranslationFragment : Fragment() {
         itemOnClickListener()
         likeOnClickListener()
         observeFavoriteBtn()
+    }
+
+
+    private fun getArgs() {
+        val arg = arguments?.get("translation")
+        if (arg != null) {
+            val translation = arg as TranslationEntity
+            binding.inputEt.setText(translation.text)
+            binding.outputEt.setText(translation.translation)
+        }
     }
 
     private fun observeFavoriteBtn() {
