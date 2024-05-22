@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.arekalov.data.api.TranslationRepository
 import com.arekalov.data.models.TranslationEntity
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -48,9 +49,8 @@ class TranslationViewModel @Inject constructor(
 
     fun setFavorite(translationEntity: TranslationEntity) {
         viewModelScope.launch {
-            val copy = translationEntity
-            copy.isFavorite = !translationEntity.isFavorite
-            repository.setFavorite(copy)
+            translationEntity.isFavorite = !translationEntity.isFavorite
+            repository.setFavorite(translationEntity)
             updateHistory()
         }
     }
