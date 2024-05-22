@@ -4,8 +4,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,10 +17,6 @@ import com.arekalov.mytranslator.R
 import com.arekalov.mytranslator.adapters.TranslationHistoryAdapter
 import com.arekalov.mytranslator.databinding.FragmentMainTranslationBinding
 import com.arekalov.mytranslator.viewmodels.TranslationViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 class MainTranslationFragment : Fragment() {
@@ -51,10 +45,10 @@ class MainTranslationFragment : Fragment() {
         setUpCleanButton()
         itemOnClickListener()
         likeOnClickListener()
-        favoriteBtn()
+        observeFavoriteBtn()
     }
 
-    private fun favoriteBtn() {
+    private fun observeFavoriteBtn() {
         binding.favoriteBtn.setOnClickListener {
             val action =
                 MainTranslationFragmentDirections.actionMainTranslationFragmentToFavoriteFragment()
@@ -64,11 +58,6 @@ class MainTranslationFragment : Fragment() {
 
     private fun likeOnClickListener() {
         historyAdapter.onItemClickListener = { translation ->
-            Toast.makeText(
-                requireContext(),
-                "${translation.text} add to favorite",
-                Toast.LENGTH_SHORT
-            ).show()
             translationViewModel.setFavorite(translation)
         }
     }
@@ -136,9 +125,6 @@ class MainTranslationFragment : Fragment() {
         translationViewModel.observeHistoryLiveData()
             .observe(viewLifecycleOwner) { data ->
                 historyAdapter.differ.submitList(data)
-                if (data.isNotEmpty()) {
-                    binding.historyRv.scrollToPosition(0)
-                }
             }
     }
 

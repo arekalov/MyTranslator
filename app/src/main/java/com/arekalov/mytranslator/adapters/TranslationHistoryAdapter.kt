@@ -27,15 +27,20 @@ class TranslationHistoryAdapter :
             return oldItem == newItem
         }
     }
+
+
     var differ = AsyncListDiffer(this, diffUtil)
     var onCLick: ((TranslationEntity) -> Unit)? = {}
 
     var onItemClickListener: ((TranslationEntity) -> Unit)? = {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TranslationHistoryViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TranslationHistoryViewHolder {
         return TranslationHistoryViewHolder(
             TranslationCardBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            onItemClickListener!!
+            onItemClickListener
         )
     }
 
@@ -50,4 +55,7 @@ class TranslationHistoryAdapter :
             onCLick?.invoke(differ.currentList[position])
         }
     }
+
+
+
 }

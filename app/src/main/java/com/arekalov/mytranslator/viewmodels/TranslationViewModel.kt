@@ -31,14 +31,6 @@ class TranslationViewModel @Inject constructor(
     }
 
 
-    fun getFavorite(): List<TranslationEntity> {
-        val data =  historyLiveData.value?.filter { it.isFavorite } ?: emptyList()
-        for (i in data) {
-            println(i)
-        }
-        return data
-    }
-
 
     suspend fun getTranslation(search: String): TranslationEntity? {
         val result = repository.getTranslation(search)

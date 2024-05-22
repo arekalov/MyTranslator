@@ -5,18 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arekalov.mytranslator.MainActivity
 import com.arekalov.mytranslator.R
 import com.arekalov.mytranslator.adapters.TranslationHistoryAdapter
 import com.arekalov.mytranslator.databinding.FragmentFavoriteBinding
 import com.arekalov.mytranslator.viewmodels.TranslationViewModel
+import kotlinx.coroutines.delay
 
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var translationViewModel: TranslationViewModel
     private lateinit var historyAdapter: TranslationHistoryAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +34,8 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         translationViewModel = (activity as MainActivity).translationViewModel
         setUpAdapter()
-        setContent()
+        observeHistoryLiveData()
+        likeOnClickListener()
     }
 
     private fun setUpAdapter() {
@@ -43,10 +48,17 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    private fun setContent() {
-        val data = translationViewModel.getFavorite()
-        if (data.isNotEmpty()) {
-            historyAdapter.differ.submitList(translationViewModel.getFavorite())
+
+    private fun likeOnClickListener() {
+        historyAdapter.onItemClickListener = { translation ->
+            translationViewModel.setFavorite(translation)
         }
+    }
+
+    private fun observeHistoryLiveData() {
+        translationViewModel.observeHistoryLiveData()
+            .observe(viewLifecycleOwner) { data ->
+                historyAdapter.differ.submitList(data.filter { it.isFavorite })
+            }
     }
 }
