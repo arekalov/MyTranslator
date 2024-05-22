@@ -1,5 +1,6 @@
 package com.arekalov.mytranslator.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -47,10 +48,10 @@ class TranslationHistoryAdapter :
     }
 
     override fun onBindViewHolder(holder: TranslationHistoryViewHolder, position: Int) {
+        Log.d("TranslationAdapter", "Binding item at position $position")
         holder.bind(differ.currentList[position])
         holder.itemView.setOnClickListener {
-            onCLick!!.invoke(differ.currentList[position])
+            onCLick?.invoke(differ.currentList[position])
         }
     }
-
 }

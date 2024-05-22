@@ -38,4 +38,9 @@ class TranslationEntity(
         result = 31 * result + isFavorite.hashCode()
         return result
     }
+
+    override fun toString(): String {
+        return "TranslationEntity(id=$id, soundUrl=$soundUrl, translation='$translation', text='$text', isFavorite=$isFavorite)"
+    }
+
 }

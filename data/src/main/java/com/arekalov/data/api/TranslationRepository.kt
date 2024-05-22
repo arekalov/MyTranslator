@@ -7,4 +7,5 @@ interface TranslationRepository {
     suspend fun getFavorite(): List<TranslationEntity>
     suspend fun insertTranslation(translation: TranslationEntity)
     suspend fun deleteTranslation(translation: TranslationEntity)
+    suspend fun deleteAll()
 }

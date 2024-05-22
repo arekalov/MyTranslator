@@ -42,5 +42,12 @@ class TranslationViewModel @Inject constructor(
         return result
     }
 
+    fun cleanHistory() {
+        viewModelScope.launch {
+            repository.deleteAll()
+            updateHistory()
+        }
+    }
+
     fun observeHistoryLiveData(): LiveData<List<TranslationEntity>> = historyLiveData
 }

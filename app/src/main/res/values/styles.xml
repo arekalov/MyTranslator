@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="DefaultCard" parent="CardView">
-        <item name="cardCornerRadius">@dimen/_15sdp</item>
+        <item name="cardCornerRadius">@dimen/_5sdp</item>
         <item name="cardBackgroundColor">@color/gray_blue_50</item>
         <item name="elevation">@dimen/_8sdp</item>
     </style>

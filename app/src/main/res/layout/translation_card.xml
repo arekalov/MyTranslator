@@ -1,105 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/DefaultCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/gray_blue_200">
+    android:padding="@dimen/_4sdp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/label_lin_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <LinearLayout
+                android:id="@+id/label_lin_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:text="@string/english"
+                    android:textSize="@dimen/_8ssp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:contentDescription="@string/content"
+                    android:src="@drawable/ic_arrow" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:text="@string/russian"
+                    android:textSize="@dimen/_8ssp" />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/input_tv"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:text="@string/example"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/options_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_lin_layout" />
+
+            <TextView
+                android:id="@+id/output_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:text="@string/example"
+                app:layout_constraintEnd_toStartOf="@id/options_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_tv" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/options_btn"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
-                android:text="@string/english"
-                android:textSize="@dimen/_8ssp" />
+                android:padding="0dp"
+                app:icon="@drawable/ic_dots"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toTopOf="@id/favorite_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
-                android:contentDescription="@string/content"
-                android:src="@drawable/ic_arrow" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/favorite_btn"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:padding="0dp"
+                app:icon="@drawable/ic_heart_disabled"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/options_btn"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:text="@string/russian"
-                android:textSize="@dimen/_8ssp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/input_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:ellipsize="end"
-            android:maxLines="4"
-            android:text="@string/example"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/options_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_lin_layout" />
-
-        <TextView
-            android:id="@+id/output_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:ellipsize="end"
-            android:maxLines="4"
-            android:text="@string/example"
-            app:layout_constraintEnd_toStartOf="@id/options_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_tv" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/options_btn"
-            style="@style/Widget.Material3.Button.IconButton"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:padding="0dp"
-            app:icon="@drawable/ic_dots"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="@dimen/_15sdp"
-            app:layout_constraintBottom_toTopOf="@id/favorite_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/favorite_btn"
-            style="@style/Widget.Material3.Button.IconButton"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
-            android:padding="0dp"
-            app:icon="@drawable/ic_heart_disabled"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="@dimen/_15sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside"
-            app:layout_constraintTop_toBottomOf="@id/options_btn" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

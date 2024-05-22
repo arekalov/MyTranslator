@@ -19,4 +19,7 @@ internal interface TranslationDAO {
 
     @Delete
     suspend fun deleteTranslation(translationEntity: TranslationEntity)
+
+    @Query("DELETE FROM translations")
+    suspend fun deleteAllTranslations()
 }

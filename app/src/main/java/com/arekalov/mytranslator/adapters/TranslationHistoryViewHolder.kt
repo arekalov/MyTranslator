@@ -11,10 +11,12 @@ class TranslationHistoryViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(translation: TranslationEntity) {
         binding.apply {
-            binding.inputTv.text = translation.text
-            binding.outputTv.text = translation.translation
+            inputTv.text = translation.text
+            outputTv.text = translation.translation
             if (translation.isFavorite) {
-                binding.favoriteBtn.setIconResource(R.drawable.ic_heart_enabled)
+                favoriteBtn.setIconResource(R.drawable.ic_heart_enabled)
+            } else {
+                favoriteBtn.setIconResource(R.drawable.ic_heart_disabled)
             }
         }
     }
