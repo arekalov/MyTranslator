@@ -1,5 +1,7 @@
 package com.arekalov.data.impl
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.arekalov.data.api.TranslationRepository
 import com.arekalov.data.models.TranslationEntity
 import javax.inject.Inject
@@ -7,27 +9,27 @@ import javax.inject.Inject
 internal class TranslationRepositoryImpl @Inject constructor(
     private val translationApi: TranslationApi,
     private val translationDAO: TranslationDAO
-) : TranslationRepository{
+) : TranslationRepository {
     override suspend fun getTranslation(search: String): TranslationEntity? {
         try {
-            println(search)
             val response = translationApi.getTranslation(search)
-            println(response)
             if (response.isSuccessful) {
                 val meaning = response.body()!![0].meanings[0]
-                println(response.body()!!)
                 val entity = TranslationEntity(
                     soundUrl = meaning.soundUrl,
-                    translation = meaning.translation.note,
+                    translation = meaning.translation.text,
+                    text = response.body()!![0].text
                 )
-                insertTranslation(entity)
+//                insertTranslation(entity)
                 return entity
             }
             return null
         } catch (ex: Exception) {
+            Log.e(TAG, "getTranslation: $ex", )
             return null
         }
     }
+
 
     override suspend fun getHistory(): List<TranslationEntity> {
         return translationDAO.getHistory()

@@ -37,6 +37,7 @@ class TranslationViewModel @Inject constructor(
 
     suspend fun getTranslation(search: String): TranslationEntity? {
         val result = repository.getTranslation(search)
+        println(result)
         if (result != null) updateHistory()
         return result
     }
