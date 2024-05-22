@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 internal object NetworkModule {
-    @DataModuleScope
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -18,7 +17,6 @@ internal object NetworkModule {
             .build()
     }
 
-    @DataModuleScope
     @Provides
     fun providesTranslationApi(retrofit: Retrofit): TranslationApi {
         return retrofit.create(TranslationApi::class.java)

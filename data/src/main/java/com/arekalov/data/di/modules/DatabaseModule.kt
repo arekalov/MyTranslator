@@ -10,7 +10,6 @@ import dagger.Provides
 
 @Module
 internal object DatabaseModule {
-    @DataModuleScope
     @Provides
     fun provideDatabase(context: Context): TranslationDataBase {
         return Room.databaseBuilder(
@@ -19,7 +18,6 @@ internal object DatabaseModule {
             "translation_db"
         ).build()
     }
-    @DataModuleScope
     @Provides
     fun provideTranslationDao(dataBase: TranslationDataBase): TranslationDAO {
         return dataBase.getProductDao()

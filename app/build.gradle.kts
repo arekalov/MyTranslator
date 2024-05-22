@@ -47,8 +47,17 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(project(":data"))
     kapt(libs.dagger.compiler)
+
+//  ssp, sdp
+    implementation(libs.ssp.android)
+    implementation(libs.sdp.android)
+
+//    coroutines
+    implementation(libs.kotlinx.coroutines.android.v171)
+
+//    data module
+    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

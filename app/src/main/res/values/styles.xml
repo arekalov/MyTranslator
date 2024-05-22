@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DefaultCard" parent="CardView">
+        <item name="cardCornerRadius">@dimen/_15sdp</item>
+        <item name="cardBackgroundColor">@color/gray_200</item>
+        <item name="elevation">@dimen/_20sdp</item>
+    </style>
+</resources>

@@ -9,7 +9,6 @@ import com.arekalov.data.di.modules.RepositoryModule
 import dagger.BindsInstance
 import dagger.Component
 
-@DataModuleScope
 @Component(modules = [DatabaseModule::class, NetworkModule::class, RepositoryModule::class])
 interface DataComponent {
     fun getTranslationRepository(): TranslationRepository

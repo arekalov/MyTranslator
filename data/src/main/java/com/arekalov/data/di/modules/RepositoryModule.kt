@@ -10,7 +10,6 @@ import dagger.Provides
 
 @Module
 internal object RepositoryModule {
-    @DataModuleScope
     @Provides
     fun providesRepository(
         translationApi: TranslationApi,
@@ -18,7 +17,6 @@ internal object RepositoryModule {
     ): TranslationRepositoryImpl {
         return TranslationRepositoryImpl(translationApi, translationDAO)
     }
-    @DataModuleScope
     @Provides
     fun provideTranslationRepositoryInterface(implementation: TranslationRepositoryImpl): TranslationRepository {
         return implementation
