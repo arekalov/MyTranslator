@@ -6,12 +6,12 @@ import com.arekalov.data.di.modules.DatabaseModule
 import com.arekalov.data.di.modules.NetworkModule
 import com.arekalov.data.di.modules.RepositoryModule
 import dagger.BindsInstance
-import dagger.Component
+import dagger.Subcomponent
 
-@Component(modules = [DatabaseModule::class, NetworkModule::class, RepositoryModule::class])
+@Subcomponent(modules = [DatabaseModule::class, NetworkModule::class, RepositoryModule::class])
 interface DataComponent {
     fun getTranslationRepository(): TranslationRepository
-    @Component.Builder
+    @Subcomponent.Builder
     interface Builder {
         @BindsInstance
         fun context(context: Context): Builder

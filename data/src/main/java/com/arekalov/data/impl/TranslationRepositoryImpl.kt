@@ -10,13 +10,16 @@ internal class TranslationRepositoryImpl @Inject constructor(
 ) : TranslationRepository{
     override suspend fun getTranslation(search: String): TranslationEntity? {
         try {
+            println(search)
             val response = translationApi.getTranslation(search)
+            println(response)
             if (response.isSuccessful) {
                 val meaning = response.body()!![0].meanings[0]
+                println(response.body()!!)
                 val entity = TranslationEntity(
                     imageUrl = meaning.imageUrl,
                     soundUrl = meaning.soundUrl,
-                    translation = meaning.translation.text,
+                    translation = meaning.translation.note,
                     transcription = meaning.transcription
                 )
                 insertTranslation(entity)

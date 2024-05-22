@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 
 internal interface TranslationApi{
-    @GET("api/public/v1/words/{search}")
+    @GET("api/public/v1/words/search")
     suspend fun getTranslation(@Query("search") search: String) : Response<TranslationList>
 }

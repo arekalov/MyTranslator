@@ -56,6 +56,10 @@ dependencies {
 //    coroutines
     implementation(libs.kotlinx.coroutines.android.v171)
 
+    //    Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
 //    data module
     implementation(project(":data"))
 
