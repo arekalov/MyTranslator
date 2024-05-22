@@ -1,5 +1,8 @@
 package com.arekalov.mytranslator.fragments
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,9 +42,33 @@ class MainTranslationFragment : Fragment() {
         setUpAdapter()
         observeHistoryLiveData()
         observeInputEditText()
+        setUpClearButton()
+        setUpCopyButtons()
     }
-    /*
-    }*/
+
+    private fun setUpCopyButtons() {
+        binding.copyInputBtn.setOnClickListener{
+            val textToCopy = binding.inputEt.text.toString()
+            val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Copied Text", textToCopy)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+        binding.copyOutputBtn.setOnClickListener {
+            val textToCopy = binding.outputEt.text.toString()
+            val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Copied Text", textToCopy)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(requireContext(), "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setUpClearButton() {
+        binding.deleteInputBtn.setOnClickListener{
+            binding.inputEt.setText("")
+            binding.outputEt.setText("")
+        }
+    }
 
     private fun observeInputEditText() {
         binding.inputEt.addTextChangedListener(object : TextWatcher {

@@ -20,7 +20,7 @@ internal class TranslationRepositoryImpl @Inject constructor(
                     translation = meaning.translation.text,
                     text = response.body()!![0].text
                 )
-//                insertTranslation(entity)
+                insertTranslation(entity)
                 return entity
             }
             return null
