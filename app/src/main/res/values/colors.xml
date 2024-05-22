@@ -12,4 +12,14 @@
     <color name="gray_700">#616161</color>
     <color name="gray_800">#424242</color>
     <color name="gray_900">#212121</color>
+    <color name="gray_blue_50">#eaedf6</color>
+    <color name="gray_blue_100">#D6E3EB</color>
+    <color name="gray_blue_200">#B8D2E0</color>
+    <color name="gray_blue_300">#9CC1D6</color>
+    <color name="gray_blue_400">#7FB1CC</color>
+    <color name="gray_blue_500">#639FBF</color>
+    <color name="gray_blue_600">#517EA1</color>
+    <color name="gray_blue_700">#416283</color>
+    <color name="gray_blue_800">#314864</color>
+    <color name="gray_blue_900">#212E45</color>
 </resources>

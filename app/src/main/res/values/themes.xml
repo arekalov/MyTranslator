@@ -5,7 +5,7 @@
         <item name="colorAccent">@color/gray_800</item>
         <item name="android:textColor">@color/gray_900</item>
 
-        <item name="android:statusBarColor">?android:colorBackground</item>
+        <item name="android:statusBarColor">@color/gray_100</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 

@@ -2,7 +2,7 @@
 <resources>
     <style name="DefaultCard" parent="CardView">
         <item name="cardCornerRadius">@dimen/_15sdp</item>
-        <item name="cardBackgroundColor">@color/gray_200</item>
-        <item name="elevation">@dimen/_20sdp</item>
+        <item name="cardBackgroundColor">@color/gray_blue_50</item>
+        <item name="elevation">@dimen/_8sdp</item>
     </style>
 </resources>

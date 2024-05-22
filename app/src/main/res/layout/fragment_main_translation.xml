@@ -5,11 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/_8sdp"
+    android:background="@color/gray_100"
     tools:context=".fragments.MainTranslationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favorite_btn"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:padding="0dp"
+            app:icon="@drawable/ic_bookmark"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="@dimen/_25sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/title_tv"
@@ -28,6 +42,7 @@
             style="@style/DefaultCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/gray_50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_tv">
 
@@ -40,6 +55,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_1sdp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -101,7 +118,6 @@
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:padding="0dp"
-                    android:textColor="@color/white"
                     app:icon="@drawable/ic_sound"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
@@ -119,7 +135,6 @@
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:padding="0dp"
-                    android:textColor="@color/white"
                     app:icon="@drawable/ic_cross"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
@@ -138,7 +153,6 @@
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:padding="0dp"
-                    android:textColor="@color/white"
                     app:icon="@drawable/ic_copy"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
@@ -154,7 +168,7 @@
             style="@style/DefaultCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_card">
 
@@ -196,7 +210,6 @@
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:padding="0dp"
 
-                    android:textColor="@color/white"
                     app:icon="@drawable/ic_copy"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
