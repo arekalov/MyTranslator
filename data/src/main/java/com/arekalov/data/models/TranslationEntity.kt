@@ -13,7 +13,7 @@ class TranslationEntity(
     val soundUrl: String?,
     val translation: String,
     val text: String,
-    val isFavorite: Boolean = false,
+    var isFavorite: Boolean = false,
 ) : Parcelable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -42,5 +42,7 @@ class TranslationEntity(
     override fun toString(): String {
         return "TranslationEntity(id=$id, soundUrl=$soundUrl, translation='$translation', text='$text', isFavorite=$isFavorite)"
     }
+
+
 
 }

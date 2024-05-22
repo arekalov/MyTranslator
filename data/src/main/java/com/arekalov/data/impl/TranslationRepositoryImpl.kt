@@ -50,4 +50,8 @@ internal class TranslationRepositoryImpl @Inject constructor(
     override suspend fun deleteAll() {
         translationDAO.deleteAllTranslations()
     }
+
+    override suspend fun setFavorite(translation: TranslationEntity) {
+        translationDAO.setFavorite(translation)
+    }
 }

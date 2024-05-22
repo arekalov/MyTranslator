@@ -29,11 +29,16 @@ class TranslationViewModel @Inject constructor(
             }
         }
     }
-    
+
 
     fun getFavorite(): List<TranslationEntity> {
-        return historyLiveData.value!!.filter { it.isFavorite }
+        val data =  historyLiveData.value?.filter { it.isFavorite } ?: emptyList()
+        for (i in data) {
+            println(i)
+        }
+        return data
     }
+
 
     suspend fun getTranslation(search: String): TranslationEntity? {
         val result = repository.getTranslation(search)
@@ -45,6 +50,15 @@ class TranslationViewModel @Inject constructor(
     fun cleanHistory() {
         viewModelScope.launch {
             repository.deleteAll()
+            updateHistory()
+        }
+    }
+
+    fun setFavorite(translationEntity: TranslationEntity) {
+        viewModelScope.launch {
+            val copy = translationEntity
+            copy.isFavorite = !translationEntity.isFavorite
+            repository.setFavorite(copy)
             updateHistory()
         }
     }

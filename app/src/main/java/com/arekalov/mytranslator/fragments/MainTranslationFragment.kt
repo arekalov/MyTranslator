@@ -12,12 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arekalov.mytranslator.MainActivity
+import com.arekalov.mytranslator.R
 import com.arekalov.mytranslator.adapters.TranslationHistoryAdapter
 import com.arekalov.mytranslator.databinding.FragmentMainTranslationBinding
 import com.arekalov.mytranslator.viewmodels.TranslationViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 class MainTranslationFragment : Fragment() {
@@ -40,10 +45,58 @@ class MainTranslationFragment : Fragment() {
         translationViewModel.updateHistory()
         setUpAdapter()
         observeHistoryLiveData()
-        observeInputEditText()
+        observeSearchButton()
         setUpClearButton()
         setUpCopyButtons()
         setUpCleanButton()
+        itemOnClickListener()
+        likeOnClickListener()
+        favoriteBtn()
+    }
+
+    private fun favoriteBtn() {
+        binding.favoriteBtn.setOnClickListener {
+            val action =
+                MainTranslationFragmentDirections.actionMainTranslationFragmentToFavoriteFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun likeOnClickListener() {
+        historyAdapter.onItemClickListener = { translation ->
+            Toast.makeText(
+                requireContext(),
+                "${translation.text} add to favorite",
+                Toast.LENGTH_SHORT
+            ).show()
+            translationViewModel.setFavorite(translation)
+        }
+    }
+
+    private fun itemOnClickListener() {
+        historyAdapter.onCLick = { translationEntity ->
+            binding.inputEt.setText(translationEntity.text)
+            binding.outputEt.setText(translationEntity.translation)
+        }
+    }
+
+    private fun observeSearchButton() {
+        binding.searchBtn.setOnClickListener {
+            binding.outputEt.setText("")
+            lifecycleScope.launch {
+                if (binding.inputEt.text.toString() != "") {
+                    val result =
+                        translationViewModel.getTranslation(binding.inputEt.text.toString())
+                    if (result != null) {
+                        binding.outputEt.setText(result.translation)
+                    } else {
+                        binding.outputEt.setText(getString(R.string.not_found))
+                    }
+                } else {
+                    binding.outputEt.setText(getString(R.string.not_found))
+                }
+            }
+        }
     }
 
     private fun setUpCleanButton() {
@@ -78,36 +131,14 @@ class MainTranslationFragment : Fragment() {
         }
     }
 
-    private fun observeInputEditText() {
-        binding.inputEt.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    delay(1000)
-                    if (binding.inputEt.text.toString() != "") {
-                        val translation =
-                            translationViewModel.getTranslation(binding.inputEt.text.toString())
-                        if (translation != null) {
-                            binding.outputEt.setText(translation.translation)
-                        }
-                    } else {
-                        binding.outputEt.setText("")
-                    }
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
-    }
 
     private fun observeHistoryLiveData() {
         translationViewModel.observeHistoryLiveData()
             .observe(viewLifecycleOwner) { data ->
                 historyAdapter.differ.submitList(data)
-                println(historyAdapter.differ.currentList.size)
+                if (data.isNotEmpty()) {
+                    binding.historyRv.scrollToPosition(0)
+                }
             }
     }
 

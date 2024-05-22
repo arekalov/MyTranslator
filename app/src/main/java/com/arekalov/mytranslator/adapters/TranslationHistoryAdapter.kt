@@ -28,18 +28,14 @@ class TranslationHistoryAdapter :
         }
     }
     var differ = AsyncListDiffer(this, diffUtil)
-    var onCLick: ((TranslationEntity) -> Unit)? = null
+    var onCLick: ((TranslationEntity) -> Unit)? = {}
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): TranslationHistoryViewHolder {
+    var onItemClickListener: ((TranslationEntity) -> Unit)? = {}
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TranslationHistoryViewHolder {
         return TranslationHistoryViewHolder(
-            TranslationCardBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+            TranslationCardBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            onItemClickListener!!
         )
     }
 

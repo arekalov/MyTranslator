@@ -8,4 +8,5 @@ interface TranslationRepository {
     suspend fun insertTranslation(translation: TranslationEntity)
     suspend fun deleteTranslation(translation: TranslationEntity)
     suspend fun deleteAll()
+    suspend fun setFavorite(translation: TranslationEntity)
 }
