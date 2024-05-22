@@ -18,5 +18,4 @@ class MainActivity : AppCompatActivity() {
         appComponent = DaggerAppComponent.builder().build()
         dataComponent = appComponent.dataComponent().context(applicationContext).build()
     }
-
 }

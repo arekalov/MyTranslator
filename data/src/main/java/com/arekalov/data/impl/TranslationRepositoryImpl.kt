@@ -17,10 +17,8 @@ internal class TranslationRepositoryImpl @Inject constructor(
                 val meaning = response.body()!![0].meanings[0]
                 println(response.body()!!)
                 val entity = TranslationEntity(
-                    imageUrl = meaning.imageUrl,
                     soundUrl = meaning.soundUrl,
                     translation = meaning.translation.note,
-                    transcription = meaning.transcription
                 )
                 insertTranslation(entity)
                 return entity

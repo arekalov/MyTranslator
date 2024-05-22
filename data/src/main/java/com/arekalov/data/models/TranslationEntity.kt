@@ -9,9 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "translations")
 class TranslationEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val imageUrl: String?,
     val soundUrl: String?,
-    val transcription: String?,
     val translation: String,
     val isFavorite: Boolean = false,
 ) : Parcelable
