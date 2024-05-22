@@ -23,6 +23,7 @@
 - Clean Architecture
 - MVVM
 - Dagger2
+- Material guideline
 - Single Activity
 - Навигация с помощью navigation components
 - Kotlin Coroutines + LiveData
