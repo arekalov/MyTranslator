@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.arekalov.data.impl.TranslationDAO
 import com.arekalov.data.impl.TranslationDataBase
-import com.arekalov.data.di.DataModuleScope
 import dagger.Module
 import dagger.Provides
 

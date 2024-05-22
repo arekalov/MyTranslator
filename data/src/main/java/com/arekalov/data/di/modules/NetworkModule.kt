@@ -1,7 +1,6 @@
 package com.arekalov.data.di.modules
 
 import com.arekalov.data.impl.TranslationApi
-import com.arekalov.data.di.DataModuleScope
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

@@ -1,6 +1,5 @@
 package com.arekalov.data.di
 
-import android.app.Application
 import android.content.Context
 import com.arekalov.data.api.TranslationRepository
 import com.arekalov.data.di.modules.DatabaseModule
